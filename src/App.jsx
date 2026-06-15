@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import signLogo from './assets/sign.svg';
 
 const Navbar = () => (
   <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-4xl rounded-full px-6 py-3 border-[0.5px] border-primary/30 bg-surface/10 backdrop-blur-xl z-[150] flex justify-between items-center shadow-[0_0_20px_rgba(0,227,128,0.15)]">
-    <div className="font-display-lg text-body-lg font-bold text-primary z-10">
-      <a href="/">PV.</a>
+    <div className="z-10 flex items-center justify-center">
+      <a href="/" className="flex items-center justify-center">
+        <img src={signLogo} alt="PV Logo" className="h-10 sm:h-12 w-auto drop-shadow-md hover:scale-105 transition-transform origin-left" />
+      </a>
     </div>
     <div className="hidden md:flex gap-8 absolute left-1/2 -translate-x-1/2">
       <a className="text-on-surface-variant font-label-mono text-label-mono hover:text-primary transition-colors hover:scale-[1.02]" href="#services">SERVICES</a>
