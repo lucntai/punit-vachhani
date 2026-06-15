@@ -39,7 +39,7 @@
 }
 .marquee-content {
     display: flex;
-    animation: marquee 30s linear infinite;
+    animation: marquee 20s linear infinite;
 }
 @keyframes marquee {
     0% { transform: translateX(0); }

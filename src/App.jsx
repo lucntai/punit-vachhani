@@ -12,7 +12,7 @@ const Navbar = () => (
       <a className="text-on-surface-variant font-label-mono text-label-mono hover:text-primary transition-colors hover:scale-[1.02]" href="#process">PROCESS</a>
       <a className="text-on-surface-variant font-label-mono text-label-mono hover:text-primary transition-colors hover:scale-[1.02]" href="#about">ABOUT</a>
     </div>
-    <button className="bg-primary-fixed text-on-primary-fixed px-5 py-1.5 rounded-full font-label-mono text-[10px] tracking-widest hover:shadow-[0_0_25px_rgba(0,227,128,0.4)] transition-all active:scale-95 duration-200 z-10">LET'S TALK</button>
+    <a href="https://calendly.com/punitvachhani/30min" target="_blank" rel="noopener noreferrer" className="bg-primary-fixed text-on-primary-fixed px-5 py-1.5 rounded-full font-label-mono text-[10px] tracking-widest hover:shadow-[0_0_25px_rgba(0,227,128,0.4)] transition-all active:scale-95 duration-200 z-10">LET'S TALK</a>
   </nav>
 );
 
@@ -64,23 +64,23 @@ const HeroSection = ({ mousePosition }) => (
         <span className="w-2 h-2 bg-primary rounded-full animate-pulse-glow shadow-[0_0_8px_rgba(43,245,142,0.8)]"></span>
         <span className="font-label-mono text-[11px] text-primary uppercase tracking-[0.3em]">FREELANCE VIDEO EDITOR</span>
       </div>
-      <h1 className="font-display-xl text-display-xl md:text-[140px] lg:text-[160px] leading-[0.8] mb-6 text-primary text-glow tracking-tighter">
-        PUNIT VACHHANI
+      <h1 className="font-display-xl text-display-xl md:text-[72px] lg:text-[90px] leading-[1.1] mb-6 text-on-surface tracking-tighter">
+        YOU <span className="font-headline-accent italic text-primary">RECORD</span>.<br />I HANDLE THE REST.
       </h1>
       <p className="font-label-mono text-label-mono text-on-surface-variant mb-4 tracking-[0.2em] uppercase">
         VIDEO EDITOR &amp; MOTION DESIGNER
       </p>
       <p className="font-body-lg text-body-lg max-w-2xl mx-auto mb-12 text-on-surface/80">
-        Cinematic cuts, motion design, and reels that hit. Crafting stories frame by frame from <span className="text-primary">Ahmedabad, Gujarat</span>.
+        I help creators, founders, and brands turn conversations into content people actually share.
       </p>
       <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
         <button className="bg-primary-fixed text-on-primary-fixed font-label-mono text-label-mono px-10 py-4 rounded-full flex items-center gap-2 hover:shadow-[0_0_30px_rgba(0,227,128,0.5)] transition-all transform hover:-translate-y-1">
           <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>play_arrow</span>
           WATCH MY WORK
         </button>
-        <button className="border border-primary/40 text-primary font-label-mono text-label-mono px-10 py-4 rounded-full flex items-center gap-2 hover:bg-primary/10 transition-all transform hover:-translate-y-1">
-          START A PROJECT ↗
-        </button>
+        <a href="https://calendly.com/punitvachhani/30min" target="_blank" rel="noopener noreferrer" className="border border-primary/40 text-primary font-label-mono text-label-mono px-10 py-4 rounded-full flex items-center justify-center gap-2 hover:bg-primary/10 transition-all transform hover:-translate-y-1">
+          LET'S TALK ↗
+        </a>
       </div>
     </motion.div>
 
@@ -115,11 +115,12 @@ const MarqueeSection = () => (
     <div className="marquee-content whitespace-nowrap flex gap-12 items-center">
       {[1, 2].map((i) => (
         <div key={i} className="flex items-center gap-12 font-display-lg text-display-lg-mobile text-white">
+          <span>CINEMATIC TRAILERS</span> <span className="text-primary text-3xl">◆</span>
+          <span>PODCAST EDITING</span> <span className="text-primary text-3xl">◆</span>
+          <span>VIRAL REELS &amp; SHORTS</span> <span className="text-primary text-3xl">◆</span>
           <span>MOTION DESIGN</span> <span className="text-primary text-3xl">◆</span>
-          <span>COLOR GRADING</span> <span className="text-primary text-3xl">◆</span>
-          <span>VFX</span> <span className="text-primary text-3xl">◆</span>
-          <span>REELS &amp; SHORTS</span> <span className="text-primary text-3xl">◆</span>
-          <span>BRAND CONTENT</span> <span className="text-primary text-3xl">◆</span>
+          <span>BOLD THUMBNAILS</span> <span className="text-primary text-3xl">◆</span>
+          <span>CLIP EXTRACTION</span> <span className="text-primary text-3xl">◆</span>
         </div>
       ))}
     </div>
@@ -128,12 +129,12 @@ const MarqueeSection = () => (
 
 const ServicesSection = () => {
   const services = [
-    { tag: "Pr", title: "Video Editing", desc: "Precision cuts, multi-cam workflows, and frame-perfect storytelling for long & short-form content." },
-    { tag: "Ae", title: "Motion Design", desc: "Kinetic typography, animated graphics, and motion elements that give your content a premium edge." },
-    { tag: "Da", title: "Color Grading", desc: "Cinematic color correction and grading that builds mood and makes every frame intentional." },
-    { tag: "9:16", title: "Short-Form Content", desc: "Punchy reels and shorts optimized for Instagram, YouTube Shorts, and TikTok engagement." },
-    { tag: "16:9", title: "Long-Form Edits", desc: "Podcast clips, documentary cuts, and brand films with tight pacing and narrative clarity." },
-    { tag: "Br", title: "Brand Storytelling", desc: "Turning raw footage into brand narratives that connect, convert, and leave an impression." }
+    { tag: "Tr", title: "Cinematic Trailers", desc: "Launch trailers, season openers, and episode teasers that make your podcast look as good as it sounds. First impressions that pull people to watch the whole conversation." },
+    { tag: "Pe", title: "Podcast Editing", desc: "From raw recordings to polished, publish-ready episodes. I handle the cuts and the cleanup so every conversation sounds seamless." },
+    { tag: "9:16", title: "Viral Reels & Shorts", desc: "The best moments from your episodes, cut into scroll-stopping clips for Instagram, YouTube Shorts, and TikTok. More reach, zero extra recording." },
+    { tag: "Md", title: "Motion Design", desc: "Animated intros, lower thirds, and episode graphics that give your podcast a visual identity worth remembering. Because great audio deserves great visuals too." },
+    { tag: "Bt", title: "Bold Thumbnails", desc: "Episode thumbnails that stand out in a crowded feed and actually get clicked. Because even the best conversation needs a great cover." },
+    { tag: "Ce", title: "Clip Extraction", desc: "I go through your full episodes and pull out the moments worth sharing the laughs, the insights, the quotables ready to post across every platform." }
   ];
 
   return (
@@ -144,7 +145,7 @@ const ServicesSection = () => {
         </div>
         <motion.h2
           initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
-          className="font-display-lg text-display-lg-mobile md:text-display-lg"
+          className="font-display-lg text-display-lg-mobile md:text-display-lg uppercase"
         >
           THE <span className="font-headline-accent italic text-primary">ARSENAL</span> BEHIND EVERY CUT
         </motion.h2>
@@ -192,8 +193,8 @@ const ShortFormDeck = () => {
             WORK
           </div>
           <motion.h2
-            initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
-            className="font-display-lg text-display-lg-mobile md:text-display-lg mb-4"
+            initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
+            className="font-display-lg text-display-lg-mobile md:text-display-lg uppercase mb-4"
           >
             SHORT FORM <span className="font-headline-accent italic text-primary">CONTENT</span>
           </motion.h2>
@@ -228,16 +229,16 @@ const FeaturedProjects = () => {
   const maxTop = Math.max(...projects.map(p => p.top));
 
   return (
-    <section className="py-section-gap px-grid-margin max-w-5xl mx-auto">
-      <div className="mb-20 flex flex-col items-start text-left">
+    <section className="py-section-gap px-grid-margin max-w-7xl mx-auto">
+      <div className="mb-16 flex flex-col items-start text-left">
         <div className="inline-block border border-primary/30 text-primary font-label-mono text-[10px] tracking-widest px-4 py-1.5 rounded-full mb-6">
-          FEATURED PROJECTS
+          FEATURED EPISODES
         </div>
         <motion.h2
           initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
-          className="font-display-lg text-display-lg-mobile md:text-display-lg"
+          className="font-display-lg text-display-lg-mobile md:text-display-lg uppercase"
         >
-          FEATURED <span className="font-headline-accent italic text-primary">PROJECTS</span>
+          FEATURED <span className="font-headline-accent italic text-primary">EPISODES</span>
         </motion.h2>
       </div>
       <div className="flex flex-col gap-8 relative pb-24">
@@ -282,28 +283,28 @@ const FeaturedProjects = () => {
 
 const ProcessSection = () => {
   const steps = [
-    { num: "01", title: "DISCOVERY", desc: "Understanding your vision, goals, and what the final cut needs to achieve." },
-    { num: "02", title: "PLANNING", desc: "Storyboarding, asset review, and edit strategy before a single cut is made." },
-    { num: "03", title: "PRODUCTION", desc: "Precision editing, motion design, and sound — built frame by frame." },
-    { num: "04", title: "REFINEMENT", desc: "Color grading, feedback rounds, and final polish until it's exactly right." },
-    { num: "05", title: "DELIVERY", desc: "Optimized exports for every platform — on time, every time." }
+    { num: "01", title: "ONBOARDING", desc: "We get aligned on your show's tone, audience, and editing style. One conversation, and I know exactly what your podcast needs." },
+    { num: "02", title: "YOU RECORD, I RECEIVE", desc: "Drop your raw files in our shared folder. No chasing, no confusion just a smooth handoff every episode." },
+    { num: "03", title: "EDITING", desc: "I clean up the audio, cut the fluff, fix the pacing, and make every conversation sound natural and engaging." },
+    { num: "04", title: "REVIEW", desc: "You get the episode to review. One round of feedback, quick changes, done. No back and forth forever." },
+    { num: "05", title: "DELIVERY", desc: "Publish-ready episode delivered — with clips, audiograms, and thumbnails. On time, every time." }
   ];
 
   return (
     <section className="py-section-gap bg-surface-container-lowest" id="process">
       <div className="px-grid-margin max-w-7xl mx-auto">
-        <div className="mb-20 flex flex-col items-start text-left">
+        <div className="mb-16 flex flex-col items-start text-left">
           <div className="border border-primary/30 text-primary font-label-mono text-[10px] tracking-widest px-4 py-1.5 rounded-full mb-6">
             HOW IT WORKS
           </div>
           <motion.h2
             initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
-            className="font-display-lg text-display-lg-mobile md:text-[100px] leading-[0.9] text-on-surface mb-6 uppercase"
+            className="font-display-lg text-display-lg-mobile md:text-display-lg uppercase mb-6"
           >
-            FROM BRIEF TO <span className="font-headline-accent italic text-primary text-glow uppercase">FINAL CUT</span>
+            FROM RECORDING TO <span className="font-headline-accent italic text-primary">FINAL EPISODE</span>
           </motion.h2>
           <p className="text-on-surface-variant text-body-lg max-w-xl">
-            A clean, collaborative workflow — so you always know where your project stands.
+            A simple, stress-free process so you always know what's happening and when.
           </p>
         </div>
         <div className="relative">
@@ -318,8 +319,8 @@ const ProcessSection = () => {
                 <div className="w-16 h-16 rounded-full bg-background border border-outline-variant mb-8 flex items-center justify-center relative z-10 group-hover:border-primary/50 transition-colors">
                   <span className="font-label-mono text-[10px] tracking-widest text-on-surface-variant group-hover:text-primary transition-colors">{s.num}</span>
                 </div>
-                <h4 className="font-display-lg text-2xl tracking-wide text-on-surface mb-3">{s.title}</h4>
-                <p className="text-[13px] text-on-surface-variant leading-relaxed px-2">{s.desc}</p>
+                <h4 className="font-display-lg text-base md:text-[18px] tracking-wider text-on-surface mb-3 uppercase">{s.title}</h4>
+                <p className="text-[12px] md:text-[13px] text-on-surface-variant/80 leading-relaxed px-1 md:px-3">{s.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -363,21 +364,17 @@ const AboutSection = () => (
         initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
         className="flex flex-col justify-between h-full py-4 lg:py-0"
       >
-        <div className="flex flex-col items-start text-left">
-          <div className="inline-block border border-primary/30 text-primary font-label-mono text-[10px] tracking-widest px-4 py-1.5 rounded-full mb-4">
+        <div className="flex flex-col items-start text-left mb-8">
+          <div className="inline-block border border-primary/30 text-primary font-label-mono text-[10px] tracking-widest px-4 py-1.5 rounded-full mb-6">
             ABOUT
           </div>
-          <h2 className="font-display-lg text-display-lg-mobile md:text-5xl lg:text-6xl leading-none">
-            THE <span className="font-headline-accent italic text-primary">EDITOR</span> BEHIND THE CUT
+          <h2 className="font-display-lg text-display-lg-mobile md:text-display-lg uppercase leading-[0.9]">
+            THE <span className="font-headline-accent italic text-primary">EDITOR</span> BEHIND THAT CUT
           </h2>
         </div>
 
         <div className="text-sm md:text-base text-on-surface-variant leading-relaxed">
-          <p>Based in the heart of Gujarat, I translate complex visions into high-retention visual stories. With a deep mastery of the Adobe Suite and DaVinci Resolve, I bridge the gap between technical precision and creative expression.</p>
-        </div>
-
-        <div className="text-sm md:text-base text-on-surface-variant leading-relaxed">
-          <p>My work isn't just about cutting footage—it's about finding the rhythmic pulse of a story and amplifying it through motion design and cinematic grading. Whether it's a 15-second hook for social or a 15-minute documentary, I treat every frame with the same level of intensity.</p>
+          <p>I started my podcasting journey as a creator, learning firsthand what it takes to build and grow a podcast. Over the years, I’ve worked with creators, founders, and brands on their podcasting journeys, giving me a broader perspective on storytelling, production, audience engagement, and content strategy. This combination of creator and operator experience allows me to help podcasts create meaningful conversations that resonate with their audience.</p>
         </div>
 
         <div className="flex flex-wrap items-center gap-4 pt-2">
@@ -416,9 +413,9 @@ const CtaSection = () => (
         initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}
         className="flex flex-col sm:flex-row items-center justify-center gap-6"
       >
-        <button className="bg-primary-fixed text-on-primary-fixed font-label-mono text-label-mono px-12 py-5 rounded-full flex items-center gap-2 hover:shadow-[0_0_40px_rgba(0,227,128,0.6)] transition-all transform hover:-translate-y-1">
-          START A PROJECT ↗
-        </button>
+        <a href="https://calendly.com/punitvachhani/30min" target="_blank" rel="noopener noreferrer" className="bg-primary-fixed text-on-primary-fixed font-label-mono text-label-mono px-12 py-5 rounded-full flex items-center justify-center gap-2 hover:shadow-[0_0_40px_rgba(0,227,128,0.6)] transition-all transform hover:-translate-y-1">
+          LET'S TALK ↗
+        </a>
         <button className="border border-outline-variant text-on-surface font-label-mono text-label-mono px-12 py-5 rounded-full hover:bg-surface-variant transition-all transform hover:-translate-y-1">
           FOLLOW MY WORK
         </button>
