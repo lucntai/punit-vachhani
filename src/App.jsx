@@ -430,7 +430,7 @@ const CtaSection = () => (
 const Footer = () => (
   <footer className="w-full py-6 px-grid-margin border-t border-outline-variant bg-surface-container-low grid grid-cols-1 md:grid-cols-3 items-center gap-6 font-body-md text-body-md">
     <div className="flex flex-col items-center md:items-start gap-1">
-      <div className="font-display-lg text-2xl text-primary leading-none">PV.</div>
+      <img src={signLogo} alt="PV Logo" className="h-6 md:h-10 w-auto mb-2" />
       <p className="font-label-mono text-[10px] text-on-surface-variant tracking-widest uppercase">CUTS THAT MOVE PEOPLE — AHMEDABAD, GJ</p>
     </div>
     <div className="flex justify-center gap-8">
