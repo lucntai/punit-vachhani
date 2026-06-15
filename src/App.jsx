@@ -1,23 +1,45 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import signLogo from './assets/sign.svg';
 
-const Navbar = () => (
-  <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-4xl rounded-full px-6 py-3 border-[0.5px] border-primary/30 bg-surface/10 backdrop-blur-xl z-[150] flex justify-between items-center shadow-[0_0_20px_rgba(0,227,128,0.15)]">
-    <div className="z-10 flex items-center justify-center">
-      <a href="/" className="flex items-center justify-center">
-        <img src={signLogo} alt="PV Logo" className="h-10 sm:h-12 w-auto drop-shadow-md hover:scale-105 transition-transform origin-left" />
-      </a>
-    </div>
-    <div className="hidden md:flex gap-8 absolute left-1/2 -translate-x-1/2">
-      <a className="text-on-surface-variant font-label-mono text-label-mono hover:text-primary transition-colors hover:scale-[1.02]" href="#services">SERVICES</a>
-      <a className="text-on-surface-variant font-label-mono text-label-mono hover:text-primary transition-colors hover:scale-[1.02]" href="#work">WORK</a>
-      <a className="text-on-surface-variant font-label-mono text-label-mono hover:text-primary transition-colors hover:scale-[1.02]" href="#process">PROCESS</a>
-      <a className="text-on-surface-variant font-label-mono text-label-mono hover:text-primary transition-colors hover:scale-[1.02]" href="#about">ABOUT</a>
-    </div>
-    <a href="https://calendly.com/punitvachhani/30min" target="_blank" rel="noopener noreferrer" className="bg-primary-fixed text-on-primary-fixed px-5 py-1.5 rounded-full font-label-mono text-[10px] tracking-widest hover:shadow-[0_0_25px_rgba(0,227,128,0.4)] transition-all active:scale-95 duration-200 z-10">LET'S TALK</a>
-  </nav>
-);
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <>
+      <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] md:w-max rounded-full px-6 md:pr-3 py-2 border-[0.5px] border-primary/30 bg-surface/10 backdrop-blur-xl z-[150] flex justify-between items-center md:gap-12 lg:gap-20 shadow-[0_0_20px_rgba(0,227,128,0.15)] transition-all duration-300">
+        <div className="z-10 flex items-center justify-center">
+          <a href="/" className="flex items-center justify-center" onClick={() => setIsOpen(false)}>
+            <img src={signLogo} alt="PV Logo" className="h-8 sm:h-9 w-auto drop-shadow-md hover:scale-105 transition-transform origin-left" />
+          </a>
+        </div>
+        <div className="hidden md:flex gap-8 items-center">
+          <a className="text-on-surface-variant font-label-mono text-label-mono hover:text-primary transition-colors hover:scale-[1.02]" href="#services">SERVICES</a>
+          <a className="text-on-surface-variant font-label-mono text-label-mono hover:text-primary transition-colors hover:scale-[1.02]" href="#work">WORK</a>
+          <a className="text-on-surface-variant font-label-mono text-label-mono hover:text-primary transition-colors hover:scale-[1.02]" href="#process">PROCESS</a>
+          <a className="text-on-surface-variant font-label-mono text-label-mono hover:text-primary transition-colors hover:scale-[1.02]" href="#about">ABOUT</a>
+        </div>
+        <div className="flex items-center gap-4 z-10">
+          <a href="https://calendly.com/punitvachhani/30min" target="_blank" rel="noopener noreferrer" className="hidden md:block bg-primary-fixed text-on-primary-fixed px-6 py-2 rounded-full font-label-mono text-[10px] tracking-widest hover:shadow-[0_0_25px_rgba(0,227,128,0.4)] transition-all active:scale-95 duration-200">LET'S TALK</a>
+          <button className="md:hidden text-primary p-2" onClick={() => setIsOpen(!isOpen)}>
+            <span className="material-symbols-outlined text-3xl">{isOpen ? 'close' : 'menu'}</span>
+          </button>
+        </div>
+      </nav>
+      {/* Mobile Menu Overlay */}
+      {isOpen && (
+        <div className="fixed inset-0 bg-background/95 backdrop-blur-xl z-[140] md:hidden flex flex-col items-center justify-center pt-20">
+          <div className="flex flex-col items-center gap-8 font-display-lg text-4xl">
+            <a className="text-on-surface hover:text-primary transition-colors" href="#services" onClick={() => setIsOpen(false)}>SERVICES</a>
+            <a className="text-on-surface hover:text-primary transition-colors" href="#work" onClick={() => setIsOpen(false)}>WORK</a>
+            <a className="text-on-surface hover:text-primary transition-colors" href="#process" onClick={() => setIsOpen(false)}>PROCESS</a>
+            <a className="text-on-surface hover:text-primary transition-colors" href="#about" onClick={() => setIsOpen(false)}>ABOUT</a>
+            <a href="https://calendly.com/punitvachhani/30min" target="_blank" rel="noopener noreferrer" className="bg-primary-fixed text-on-primary-fixed px-8 py-3 rounded-full font-label-mono text-sm tracking-widest mt-4" onClick={() => setIsOpen(false)}>LET'S TALK</a>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
 
 const HeroSection = ({ mousePosition }) => (
   <header className="relative min-h-[884px] md:min-h-screen flex flex-col items-center justify-center text-center px-grid-margin overflow-hidden" id="hero-section">
@@ -53,8 +75,8 @@ const HeroSection = ({ mousePosition }) => (
     </div>
 
     {/* Faded Background Name */}
-    <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03] select-none z-10">
-      <span className="font-display-xl text-[120px] md:text-[350px] lg:text-[450px] leading-none text-primary whitespace-nowrap">PUNIT</span>
+    <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03] select-none z-10 overflow-hidden">
+      <span className="font-display-xl text-[90px] sm:text-[150px] md:text-[350px] lg:text-[450px] leading-none text-primary whitespace-nowrap">PUNIT</span>
     </div>
 
     <motion.div
@@ -67,8 +89,8 @@ const HeroSection = ({ mousePosition }) => (
         <span className="w-2 h-2 bg-primary rounded-full animate-pulse-glow shadow-[0_0_8px_rgba(43,245,142,0.8)]"></span>
         <span className="font-label-mono text-[11px] text-primary uppercase tracking-[0.3em]">FREELANCE VIDEO EDITOR</span>
       </div>
-      <h1 className="font-display-xl text-display-xl md:text-[72px] lg:text-[90px] leading-[1.1] mb-6 text-on-surface tracking-tighter">
-        YOU <span className="font-headline-accent italic text-primary">RECORD</span>.<br />I HANDLE THE REST.
+      <h1 className="font-display-xl text-[50px] sm:text-[60px] md:text-[72px] lg:text-[90px] leading-[1.1] mb-6 text-on-surface tracking-tighter">
+        YOU <span className="font-headline-accent italic text-primary-fixed">RECORD</span>.<br />I HANDLE THE REST.
       </h1>
       <p className="font-label-mono text-label-mono text-on-surface-variant mb-4 tracking-[0.2em] uppercase">
         VIDEO EDITOR &amp; MOTION DESIGNER
@@ -114,16 +136,16 @@ const HeroSection = ({ mousePosition }) => (
 );
 
 const MarqueeSection = () => (
-  <section className="py-12 bg-[#0a0a0a] border-y border-outline-variant overflow-hidden">
-    <div className="marquee-content whitespace-nowrap flex gap-12 items-center">
-      {[1, 2].map((i) => (
-        <div key={i} className="flex items-center gap-12 font-display-lg text-display-lg-mobile text-white">
-          <span>CINEMATIC TRAILERS</span> <span className="text-primary text-3xl">◆</span>
-          <span>PODCAST EDITING</span> <span className="text-primary text-3xl">◆</span>
-          <span>VIRAL REELS &amp; SHORTS</span> <span className="text-primary text-3xl">◆</span>
-          <span>MOTION DESIGN</span> <span className="text-primary text-3xl">◆</span>
-          <span>BOLD THUMBNAILS</span> <span className="text-primary text-3xl">◆</span>
-          <span>CLIP EXTRACTION</span> <span className="text-primary text-3xl">◆</span>
+  <section className="py-6 md:py-12 bg-[#0a0a0a] border-y border-outline-variant overflow-hidden">
+    <div className="marquee-content whitespace-nowrap flex items-center">
+      {[1, 2, 3, 4].map((i) => (
+        <div key={i} className="flex items-center gap-6 md:gap-12 font-display-lg text-xl md:text-display-lg-mobile text-white pr-6 md:pr-12">
+          <span>CINEMATIC TRAILERS</span> <span className="text-primary-fixed text-base md:text-3xl">◆</span>
+          <span>PODCAST EDITING</span> <span className="text-primary-fixed text-base md:text-3xl">◆</span>
+          <span>VIRAL REELS &amp; SHORTS</span> <span className="text-primary-fixed text-base md:text-3xl">◆</span>
+          <span>MOTION DESIGN</span> <span className="text-primary-fixed text-base md:text-3xl">◆</span>
+          <span>BOLD THUMBNAILS</span> <span className="text-primary-fixed text-base md:text-3xl">◆</span>
+          <span>CLIP EXTRACTION</span> <span className="text-primary-fixed text-base md:text-3xl">◆</span>
         </div>
       ))}
     </div>
@@ -150,7 +172,7 @@ const ServicesSection = () => {
           initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
           className="font-display-lg text-display-lg-mobile md:text-display-lg uppercase"
         >
-          THE <span className="font-headline-accent italic text-primary">ARSENAL</span> BEHIND EVERY CUT
+          THE <span className="font-headline-accent italic text-primary-fixed">ARSENAL</span> BEHIND EVERY CUT
         </motion.h2>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -179,19 +201,68 @@ const ServicesSection = () => {
   );
 };
 
+const ShortFormCard = ({ card }) => {
+  const videoRef = useRef(null);
+  const [isMuted, setIsMuted] = useState(true);
+
+  const handleMouseEnter = () => {
+    if (videoRef.current) videoRef.current.play();
+  };
+
+  const handleMouseLeave = () => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+    }
+  };
+
+  const toggleMute = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    setIsMuted(!isMuted);
+  };
+
+  return (
+    <div
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      className={`card-deck-item relative md:absolute flex-shrink-0 w-64 md:w-72 aspect-[9/16] bg-surface-container border-2 border-primary/30 rounded-2xl overflow-hidden shadow-2xl z-${card.z} hover:z-[100] md:hover:scale-105 md:hover:shadow-[0_0_50px_rgba(0,0,0,0.9)] snap-center md:snap-align-none ${card.initialClasses}`}
+    >
+      <video
+        ref={videoRef}
+        src={card.video}
+        loop
+        muted={isMuted}
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover opacity-90 transition-opacity"
+      />
+      <div className="absolute inset-0 bg-black/10 group-hover/deck:bg-transparent transition-colors pointer-events-none"></div>
+      <div className="absolute bottom-0 inset-x-0 p-6 bg-gradient-to-t from-surface/90 via-surface/60 to-transparent pointer-events-none z-10 flex flex-col justify-end">
+        <span className="font-label-mono text-[10px] text-primary mb-2 block tracking-widest uppercase">{card.tag}</span>
+        <h4 className="font-display-lg text-body-md md:text-xl text-on-surface leading-tight">{card.title}</h4>
+      </div>
+      <button
+        onClick={toggleMute}
+        className="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-background/60 backdrop-blur-md border border-outline-variant flex items-center justify-center text-white hover:bg-primary hover:text-background transition-colors z-20 shadow-lg"
+      >
+        <span className="material-symbols-outlined text-[20px]">{isMuted ? 'volume_off' : 'volume_up'}</span>
+      </button>
+    </div>
+  );
+};
+
 const ShortFormDeck = () => {
   const cards = [
-    { tag: "JOSEPH", title: "EDITORIAL CUT", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDHuLCufbfPeJfXHeXXBcA9VhU9wB9VEZ3MImn-Zl3bgCvVNMvfPMZg2OiaxIW3UUedVGQ9O5sjNBWxBbgmpKJCo1FlyhMIgb13w5nKKAYQ5hmbPALd9J7AkWrAjIhwUZFOCgNQh5jYvYfKVGlVmtQnMlEEuYptNI4H7pQm-7gD-_J0IR8IRkDAoNhqGHGBSEBIEMkq_UJhkR2MWqylUXAwfYYFo8HPNk7YMptOD-dGDHUsZyd3ihoXMEBWYKaYC3jXmfwwK3PUXdU", z: 10, initialClasses: "rotate-[-4deg] translate-x-[-12px] translate-y-[5px] group-hover/deck:rotate-[-16deg] group-hover/deck:-translate-x-[110%] group-hover/deck:-translate-y-[10%]" },
-    { tag: "COMEBACK", title: "STORYTELLING REEL", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCZsdnTOw0CJ-i18_cfpJIEugw-DfUrYmdz53L9D6k5c3__VeuvrvYKjU76LvNd4LEY6urxUfgOQTkIY2MHG-1qL5vndex1PDjvADX_z71VEkMYlK00Z4pMoU8lD0zJ5yQ12MPN9V3G46uJmrXnReiNHwXAbH7p1W0a3PcRfUVbignvSrHhtmBsKhw4x7lKLdZWOAZznOdxDpfzjhNt_ycar9XuvlA_evKz2CWw_Ws7C8KHZ8L161-ScSoL-4ha007AK-yAGKRcYcU", z: 20, initialClasses: "rotate-[-2deg] translate-x-[-6px] translate-y-[2px] group-hover/deck:rotate-[-8deg] group-hover/deck:-translate-x-[55%] group-hover/deck:-translate-y-[20%]" },
-    { tag: "HARDWORK", title: "EDITORIAL CUT", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDHuLCufbfPeJfXHeXXBcA9VhU9wB9VEZ3MImn-Zl3bgCvVNMvfPMZg2OiaxIW3UUedVGQ9O5sjNBWxBbgmpKJCo1FlyhMIgb13w5nKKAYQ5hmbPALd9J7AkWrAjIhwUZFOCgNQh5jYvYfKVGlVmtQnMlEEuYptNI4H7pQm-7gD-_J0IR8IRkDAoNhqGHGBSEBIEMkq_UJhkR2MWqylUXAwfYYFo8HPNk7YMptOD-dGDHUsZyd3ihoXMEBWYKaYC3jXmfwwK3PUXdU", z: 30, initialClasses: "rotate-[0deg] translate-x-[0px] translate-y-[0px] group-hover/deck:rotate-[0deg] group-hover/deck:translate-x-[0%] group-hover/deck:-translate-y-[25%]" },
-    { tag: "JOURNEY", title: "TRAVEL VLOG", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDHuLCufbfPeJfXHeXXBcA9VhU9wB9VEZ3MImn-Zl3bgCvVNMvfPMZg2OiaxIW3UUedVGQ9O5sjNBWxBbgmpKJCo1FlyhMIgb13w5nKKAYQ5hmbPALd9J7AkWrAjIhwUZFOCgNQh5jYvYfKVGlVmtQnMlEEuYptNI4H7pQm-7gD-_J0IR8IRkDAoNhqGHGBSEBIEMkq_UJhkR2MWqylUXAwfYYFo8HPNk7YMptOD-dGDHUsZyd3ihoXMEBWYKaYC3jXmfwwK3PUXdU", z: 40, initialClasses: "rotate-[2deg] translate-x-[6px] translate-y-[2px] group-hover/deck:rotate-[8deg] group-hover/deck:translate-x-[55%] group-hover/deck:-translate-y-[20%]" },
-    { tag: "TECH SPEC", title: "PRODUCT AD", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCZsdnTOw0CJ-i18_cfpJIEugw-DfUrYmdz53L9D6k5c3__VeuvrvYKjU76LvNd4LEY6urxUfgOQTkIY2MHG-1qL5vndex1PDjvADX_z71VEkMYlK00Z4pMoU8lD0zJ5yQ12MPN9V3G46uJmrXnReiNHwXAbH7p1W0a3PcRfUVbignvSrHhtmBsKhw4x7lKLdZWOAZznOdxDpfzjhNt_ycar9XuvlA_evKz2CWw_Ws7C8KHZ8L161-ScSoL-4ha007AK-yAGKRcYcU", z: 50, initialClasses: "rotate-[4deg] translate-x-[12px] translate-y-[5px] group-hover/deck:rotate-[16deg] group-hover/deck:translate-x-[110%] group-hover/deck:-translate-y-[10%]" }
+    { tag: "JOSEPH", title: "EDITORIAL CUT", video: "/video-1.mp4", z: 10, initialClasses: "md:rotate-[-4deg] md:translate-x-[-12px] md:translate-y-[5px] group-hover/deck:md:rotate-[-16deg] group-hover/deck:md:-translate-x-[110%] group-hover/deck:md:-translate-y-[10%]" },
+    { tag: "COMEBACK", title: "STORYTELLING REEL", video: "/video-1.mp4", z: 20, initialClasses: "md:rotate-[-2deg] md:translate-x-[-6px] md:translate-y-[2px] group-hover/deck:md:rotate-[-8deg] group-hover/deck:md:-translate-x-[55%] group-hover/deck:md:-translate-y-[20%]" },
+    { tag: "HARDWORK", title: "EDITORIAL CUT", video: "/video-1.mp4", z: 30, initialClasses: "md:rotate-[0deg] md:translate-x-[0px] md:translate-y-[0px] group-hover/deck:md:rotate-[0deg] group-hover/deck:md:translate-x-[0%] group-hover/deck:md:-translate-y-[25%]" },
+    { tag: "JOURNEY", title: "TRAVEL VLOG", video: "/video-1.mp4", z: 40, initialClasses: "md:rotate-[2deg] md:translate-x-[6px] md:translate-y-[2px] group-hover/deck:md:rotate-[8deg] group-hover/deck:md:translate-x-[55%] group-hover/deck:md:-translate-y-[20%]" },
+    { tag: "TECH SPEC", title: "PRODUCT AD", video: "/video-1.mp4", z: 50, initialClasses: "md:rotate-[4deg] md:translate-x-[12px] md:translate-y-[5px] group-hover/deck:md:rotate-[16deg] group-hover/deck:md:translate-x-[110%] group-hover/deck:md:-translate-y-[10%]" }
   ];
 
   return (
     <section className="py-section-gap bg-surface-container-lowest overflow-hidden" id="work">
       <div className="px-grid-margin max-w-7xl mx-auto">
-        <div className="mb-16 flex flex-col items-start text-left">
+        <div className="mb-8 md:mb-16 flex flex-col items-start text-left">
           <div className="inline-block border border-primary/30 text-primary font-label-mono text-[10px] tracking-widest px-4 py-1.5 rounded-full mb-6">
             WORK
           </div>
@@ -199,21 +270,20 @@ const ShortFormDeck = () => {
             initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
             className="font-display-lg text-display-lg-mobile md:text-display-lg uppercase mb-4"
           >
-            SHORT FORM <span className="font-headline-accent italic text-primary">CONTENT</span>
+            SHORT FORM <span className="font-headline-accent italic text-primary-fixed">CONTENT</span>
           </motion.h2>
-          <p className="font-label-mono text-label-mono text-on-surface-variant tracking-widest uppercase">
-            [ HOVER TO PREVIEW DECK ]
+          <p className="hidden md:block font-label-mono text-label-mono text-on-surface-variant tracking-widest uppercase">
+            [ HOVER TO PLAY ]
+          </p>
+          <p className="md:hidden font-label-mono text-label-mono text-on-surface-variant tracking-widest uppercase">
+            [ SWIPE TO VIEW • TAP TO PLAY ]
           </p>
         </div>
-        <div className="group/deck relative h-[600px] flex items-center justify-center w-full max-w-3xl mx-auto cursor-pointer mt-24">
+
+        {/* Mobile: Horizontal Scroll Snap | Desktop: Hover Deck */}
+        <div className="group/deck relative md:h-[600px] flex overflow-x-auto snap-x snap-mandatory md:overflow-visible gap-4 md:gap-0 pb-8 md:pb-0 hide-scrollbar md:items-center md:justify-center w-[calc(100vw-2rem)] md:w-full max-w-3xl mx-auto cursor-pointer mt-8 md:mt-24 -ml-4 pl-4 md:ml-auto md:pl-0">
           {cards.map((c, idx) => (
-            <div key={idx} className={`card-deck-item absolute w-72 aspect-[9/16] bg-surface-container border border-white/20 rounded-2xl overflow-hidden shadow-2xl z-${c.z} hover:z-[100] hover:scale-105 hover:shadow-[0_0_50px_rgba(0,0,0,0.9)] ${c.initialClasses}`}>
-              <img src={c.img} className="absolute inset-0 w-full h-full object-cover opacity-80" alt={c.title} />
-              <div className="absolute bottom-0 inset-x-0 p-6 bg-gradient-to-t from-surface to-transparent pointer-events-none">
-                <span className="font-label-mono text-[10px] text-primary mb-2 block tracking-widest uppercase">{c.tag}</span>
-                <h4 className="font-display-lg text-body-md text-on-surface">{c.title}</h4>
-              </div>
-            </div>
+            <ShortFormCard key={idx} card={c} />
           ))}
         </div>
       </div>
@@ -221,12 +291,125 @@ const ShortFormDeck = () => {
   );
 };
 
+const FeaturedVideoCard = ({ p, maxTop }) => {
+  const containerRef = useRef(null);
+  const videoRef = useRef(null);
+  const [isActive, setIsActive] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.6 } // Video plays when 60% in view
+    );
+    if (containerRef.current) observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      if (isActive) {
+        // Active mode: pause the preview video since modal is taking over
+        videoRef.current.pause();
+      } else if (isInView) {
+        // Preview mode: force muted, auto play
+        videoRef.current.muted = true;
+        videoRef.current.play().catch(e => console.log('Autoplay blocked:', e));
+      } else {
+        // Out of view or inactive: pause
+        videoRef.current.pause();
+      }
+    }
+  }, [isInView, isActive]);
+
+  const handleCardClick = () => {
+    if (!isActive) setIsActive(true);
+  };
+
+  const handleClose = (e) => {
+    e.stopPropagation();
+    setIsActive(false);
+  };
+
+  return (
+    <>
+      {/* Background Card */}
+      <motion.div
+        ref={containerRef}
+        initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }}
+        onClick={handleCardClick}
+        className="group sticky shadow-[0_10px_40px_rgba(0,0,0,0.8)] bg-[#000000] rounded-2xl transition-all duration-500 overflow-hidden border-2 border-primary/20 hover:border-primary/50 cursor-pointer scale-100 max-w-4xl mx-auto w-full"
+        style={{ top: `var(--top-offset, ${p.top}px)`, zIndex: p.id * 10 }}
+      >
+        <style>{`
+          @media (max-width: 768px) {
+            div[style*="zIndex: ${p.id * 10}"] {
+              --top-offset: ${p.topMobile}px;
+            }
+          }
+        `}</style>
+        <div className="relative bg-surface overflow-hidden transition-all duration-500 aspect-video max-h-[45vh] lg:max-h-[55vh]">
+          <video
+            ref={videoRef}
+            src="/video-1.mp4"
+            loop
+            playsInline
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${!isActive && isInView ? 'opacity-80 group-hover:opacity-100' : 'opacity-100'}`}
+          />
+          {!isActive && !isInView && (
+            <div className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-transparent transition-colors duration-500">
+              <div className="w-[72px] h-[72px] rounded-full bg-primary flex items-center justify-center text-background shadow-[0_0_30px_rgba(43,245,142,0.4)] group-hover:shadow-[0_0_60px_rgba(43,245,142,0.6)] group-hover:scale-110 transition-all duration-300">
+                <span className="material-symbols-outlined text-4xl ml-1" style={{ fontVariationSettings: "'FILL' 1" }}>play_arrow</span>
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="p-4 md:px-6 md:py-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-[#000000] transition-all duration-500">
+          <div>
+            <h3 className="font-display-lg text-xl md:text-2xl text-on-surface mb-1.5 leading-none uppercase transition-colors">{p.title}</h3>
+            <p className="font-label-mono text-[9px] text-on-surface-variant tracking-[0.15em] uppercase">{p.meta}</p>
+          </div>
+          <div className="border border-primary/40 text-primary font-label-mono text-[9px] tracking-widest px-4 py-1.5 rounded-full whitespace-nowrap group-hover:border-primary transition-colors">
+            {p.tag}
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Fullscreen Modal Form */}
+      {isActive && (
+        <div
+          className="fixed inset-0 z-[200] flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 md:p-8 allow-cursor"
+          onClick={handleClose}
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.3 }}
+            className="relative w-full max-w-6xl aspect-video bg-black rounded-2xl overflow-hidden shadow-[0_0_80px_rgba(0,0,0,1)] border border-white/10"
+            onClick={e => e.stopPropagation()}
+          >
+            <video
+              src="/video-1.mp4"
+              autoPlay
+              controls
+              className="w-full h-full object-contain outline-none"
+            />
+          </motion.div>
+        </div>
+      )}
+    </>
+  );
+};
+
 const FeaturedProjects = () => {
   const projects = [
-    { id: 1, title: "COCA-COLA EDIT", meta: "BRAND COMMERCIAL • PREMIERE PRO • 2024", tag: "COMMERCIAL", url: "vimeo.com/umar_faruq/coca_cola", top: 100, img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDHuLCufbfPeJfXHeXXBcA9VhU9wB9VEZ3MImn-Zl3bgCvVNMvfPMZg2OiaxIW3UUedVGQ9O5sjNBWxBbgmpKJCo1FlyhMIgb13w5nKKAYQ5hmbPALd9J7AkWrAjIhwUZFOCgNQh5jYvYfKVGlVmtQnMlEEuYptNI4H7pQm-7gD-_J0IR8IRkDAoNhqGHGBSEBIEMkq_UJhkR2MWqylUXAwfYYFo8HPNk7YMptOD-dGDHUsZyd3ihoXMEBWYKaYC3jXmfwwK3PUXdU" },
-    { id: 2, title: "SEBASTIAN: SPEED NARRATIVE", meta: "FAN DOCUMENTARY • AFTER EFFECTS • 2023", tag: "DOCUMENTARY", url: "yt.com/watch?v=sebastian_f1", top: 120, img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCZsdnTOw0CJ-i18_cfpJIEugw-DfUrYmdz53L9D6k5c3__VeuvrvYKjU76LvNd4LEY6urxUfgOQTkIY2MHG-1qL5vndex1PDjvADX_z71VEkMYlK00Z4pMoU8lD0zJ5yQ12MPN9V3G46uJmrXnReiNHwXAbH7p1W0a3PcRfUVbignvSrHhtmBsKhw4x7lKLdZWOAZznOdxDpfzjhNt_ycar9XuvlA_evKz2CWw_Ws7C8KHZ8L161-ScSoL-4ha007AK-yAGKRcYcU" },
-    { id: 3, title: "UBISOFT: UNSEEN WORLD", meta: "GAME TRAILER • PREMIERE PRO • 2024", tag: "GAME TRAILER", url: "vimeo.com/umar_faruq/ubisoft_promo", top: 140, img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDHuLCufbfPeJfXHeXXBcA9VhU9wB9VEZ3MImn-Zl3bgCvVNMvfPMZg2OiaxIW3UUedVGQ9O5sjNBWxBbgmpKJCo1FlyhMIgb13w5nKKAYQ5hmbPALd9J7AkWrAjIhwUZFOCgNQh5jYvYfKVGlVmtQnMlEEuYptNI4H7pQm-7gD-_J0IR8IRkDAoNhqGHGBSEBIEMkq_UJhkR2MWqylUXAwfYYFo8HPNk7YMptOD-dGDHUsZyd3ihoXMEBWYKaYC3jXmfwwK3PUXdU" },
-    { id: 4, title: "PV. PERSONAL BRAND FILM", meta: "IDENTITY PIECE • DAVINCI RESOLVE • 2024", tag: "BRAND FILM", url: "portfolio.uf/personal_brand_film", top: 160, img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCZsdnTOw0CJ-i18_cfpJIEugw-DfUrYmdz53L9D6k5c3__VeuvrvYKjU76LvNd4LEY6urxUfgOQTkIY2MHG-1qL5vndex1PDjvADX_z71VEkMYlK00Z4pMoU8lD0zJ5yQ12MPN9V3G46uJmrXnReiNHwXAbH7p1W0a3PcRfUVbignvSrHhtmBsKhw4x7lKLdZWOAZznOdxDpfzjhNt_ycar9XuvlA_evKz2CWw_Ws7C8KHZ8L161-ScSoL-4ha007AK-yAGKRcYcU" }
+    { id: 1, title: "COCA-COLA EDIT", meta: "BRAND COMMERCIAL • PREMIERE PRO • 2024", tag: "COMMERCIAL", url: "vimeo.com/umar_faruq/coca_cola", top: 100, topMobile: 80 },
+    { id: 2, title: "SEBASTIAN: SPEED NARRATIVE", meta: "FAN DOCUMENTARY • AFTER EFFECTS • 2023", tag: "DOCUMENTARY", url: "yt.com/watch?v=sebastian_f1", top: 112, topMobile: 88 },
+    { id: 3, title: "UBISOFT: UNSEEN WORLD", meta: "GAME TRAILER • PREMIERE PRO • 2024", tag: "GAME TRAILER", url: "vimeo.com/umar_faruq/ubisoft_promo", top: 124, topMobile: 96 },
+    { id: 4, title: "PV. PERSONAL BRAND FILM", meta: "IDENTITY PIECE • DAVINCI RESOLVE • 2024", tag: "BRAND FILM", url: "portfolio.uf/personal_brand_film", top: 136, topMobile: 104 }
   ];
 
   const maxTop = Math.max(...projects.map(p => p.top));
@@ -241,43 +424,12 @@ const FeaturedProjects = () => {
           initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
           className="font-display-lg text-display-lg-mobile md:text-display-lg uppercase"
         >
-          FEATURED <span className="font-headline-accent italic text-primary">EPISODES</span>
+          FEATURED <span className="font-headline-accent italic text-primary-fixed">EPISODES</span>
         </motion.h2>
       </div>
       <div className="flex flex-col gap-8 relative pb-24">
         {projects.map((p) => (
-          <motion.div
-            key={p.id}
-            initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }}
-            className={`group sticky shadow-[0_10px_40px_rgba(0,0,0,0.8)] bg-[#111111] rounded-2xl transition-all duration-500 border border-outline-variant hover:border-primary/50 overflow-hidden cursor-pointer`}
-            style={{ top: `${p.top}px`, zIndex: p.id * 10, marginBottom: `${maxTop - p.top}px` }}
-          >
-            <div className="bg-surface-container-high p-3.5 flex items-center gap-2 border-b border-outline-variant group-hover:border-primary/30 transition-colors">
-              <div className="flex gap-2 pl-1">
-                <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
-              </div>
-              <div className="mx-auto text-[10px] font-label-mono text-on-surface-variant bg-surface-variant/50 px-6 py-1 rounded-full">{p.url}</div>
-            </div>
-            <div className="aspect-video max-h-[45vh] lg:max-h-[55vh] relative bg-surface overflow-hidden">
-              <img src={p.img} alt={p.title} className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />
-              <div className="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-transparent transition-colors duration-500">
-                <div className="w-[72px] h-[72px] rounded-full bg-primary flex items-center justify-center text-background shadow-[0_0_30px_rgba(43,245,142,0.4)] group-hover:shadow-[0_0_60px_rgba(43,245,142,0.6)] group-hover:scale-110 transition-all duration-300">
-                  <span className="material-symbols-outlined text-4xl ml-1" style={{ fontVariationSettings: "'FILL' 1" }}>play_arrow</span>
-                </div>
-              </div>
-            </div>
-            <div className="p-6 md:px-8 md:py-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-[#111111]">
-              <div>
-                <h3 className="font-display-lg text-3xl md:text-4xl text-on-surface mb-2 leading-none uppercase">{p.title}</h3>
-                <p className="font-label-mono text-[10px] text-on-surface-variant tracking-[0.2em] uppercase">{p.meta}</p>
-              </div>
-              <div className="border border-primary/40 text-primary font-label-mono text-[10px] tracking-widest px-5 py-2 rounded-full whitespace-nowrap group-hover:border-primary transition-colors">
-                {p.tag}
-              </div>
-            </div>
-          </motion.div>
+          <FeaturedVideoCard key={p.id} p={p} maxTop={maxTop} />
         ))}
       </div>
     </section>
@@ -304,7 +456,7 @@ const ProcessSection = () => {
             initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
             className="font-display-lg text-display-lg-mobile md:text-display-lg uppercase mb-6"
           >
-            FROM RECORDING TO <span className="font-headline-accent italic text-primary">FINAL EPISODE</span>
+            FROM RECORDING TO <span className="font-headline-accent italic text-primary-fixed">FINAL EPISODE</span>
           </motion.h2>
           <p className="text-on-surface-variant text-body-lg max-w-xl">
             A simple, stress-free process so you always know what's happening and when.
@@ -372,7 +524,7 @@ const AboutSection = () => (
             ABOUT
           </div>
           <h2 className="font-display-lg text-display-lg-mobile md:text-display-lg uppercase leading-[0.9]">
-            THE <span className="font-headline-accent italic text-primary">EDITOR</span> BEHIND THAT CUT
+            THE <span className="font-headline-accent italic text-primary-fixed">EDITOR</span> BEHIND THAT CUT
           </h2>
         </div>
 
@@ -401,10 +553,10 @@ const CtaSection = () => (
       </div>
       <motion.h2
         initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
-        className="font-display-xl text-display-lg md:text-[120px] mb-8 text-white leading-[0.9]"
+        className="font-display-xl text-5xl md:text-[120px] mb-8 text-white leading-[0.9]"
       >
         LET'S CREATE <br />
-        <span className="font-headline-accent italic text-primary">SOMETHING<br />EPIC</span>
+        <span className="font-headline-accent italic text-primary-fixed">SOMETHING<br />EPIC</span>
       </motion.h2>
       <motion.p
         initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}
