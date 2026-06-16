@@ -6,7 +6,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-      <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] md:w-max rounded-full px-6 md:pr-3 py-2 border-[0.5px] border-primary/30 bg-surface/10 backdrop-blur-xl z-[150] flex justify-between items-center md:gap-12 lg:gap-20 shadow-[0_0_20px_rgba(0,227,128,0.15)] transition-all duration-300">
+      <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] md:w-max rounded-full px-6 md:pr-3 py-2 border-[0.5px] border-primary/30 bg-surface/10 backdrop-blur-xl z-[150] flex justify-between items-center md:gap-12 lg:gap-20 shadow-[0_0_20px_rgba(138,180,248,0.15)] transition-all duration-300">
         <div className="z-10 flex items-center justify-center">
           <a href="/" className="flex items-center justify-center" onClick={() => setIsOpen(false)}>
             <img src={signLogo} alt="PV Logo" className="h-8 sm:h-9 w-auto drop-shadow-md hover:scale-105 transition-transform origin-left" />
@@ -19,7 +19,7 @@ const Navbar = () => {
           <a className="text-on-surface-variant font-label-mono text-label-mono hover:text-primary transition-colors hover:scale-[1.02]" href="#about">ABOUT</a>
         </div>
         <div className="flex items-center gap-4 z-10">
-          <a href="https://calendly.com/punitvachhani/30min" target="_blank" rel="noopener noreferrer" className="hidden md:block bg-primary-fixed text-on-primary-fixed px-6 py-2 rounded-full font-label-mono text-[10px] tracking-widest hover:shadow-[0_0_25px_rgba(0,227,128,0.4)] transition-all active:scale-95 duration-200">LET'S TALK</a>
+          <a href="https://calendly.com/punitvachhani/30min" target="_blank" rel="noopener noreferrer" className="hidden md:block bg-primary-fixed text-on-primary-fixed px-6 py-2 rounded-full font-label-mono text-[10px] tracking-widest hover:shadow-[0_0_25px_rgba(138,180,248,0.4)] transition-all active:scale-95 duration-200">LET'S TALK</a>
           <button className="md:hidden text-primary p-2" onClick={() => setIsOpen(!isOpen)}>
             <span className="material-symbols-outlined text-3xl">{isOpen ? 'close' : 'menu'}</span>
           </button>
@@ -47,7 +47,7 @@ const HeroSection = ({ mousePosition }) => (
     <div
       className="absolute inset-0 pointer-events-none z-0"
       style={{
-        background: `radial-gradient(circle 600px at ${mousePosition.x}px ${mousePosition.y}px, rgba(43,245,142,0.15), transparent 80%)`,
+        background: `radial-gradient(circle 600px at ${mousePosition.x}px ${mousePosition.y}px, rgba(138,180,248,0.15), transparent 80%)`,
         transition: 'background 0.2s ease-out'
       }}
     />
@@ -86,7 +86,7 @@ const HeroSection = ({ mousePosition }) => (
       className="relative z-20 max-w-5xl flex flex-col items-center"
     >
       <div className="inline-flex items-center gap-3 border-[0.5px] border-primary/40 px-5 py-2 rounded-full mb-8 bg-primary/5 backdrop-blur-sm">
-        <span className="w-2 h-2 bg-primary rounded-full animate-pulse-glow shadow-[0_0_8px_rgba(43,245,142,0.8)]"></span>
+        <span className="w-2 h-2 bg-primary rounded-full animate-pulse-glow shadow-[0_0_8px_rgba(138,180,248,0.8)]"></span>
         <span className="font-label-mono text-[11px] text-primary uppercase tracking-[0.3em]">FREELANCE VIDEO EDITOR</span>
       </div>
       <h1 className="font-display-xl text-[50px] sm:text-[60px] md:text-[72px] lg:text-[90px] leading-[1.1] mb-6 text-on-surface tracking-tighter">
@@ -99,7 +99,7 @@ const HeroSection = ({ mousePosition }) => (
         I help creators, founders, and brands turn conversations into content people actually share.
       </p>
       <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-        <button className="bg-primary-fixed text-on-primary-fixed font-label-mono text-label-mono px-10 py-4 rounded-full flex items-center gap-2 hover:shadow-[0_0_30px_rgba(0,227,128,0.5)] transition-all transform hover:-translate-y-1">
+        <button className="bg-primary-fixed text-on-primary-fixed font-label-mono text-label-mono px-10 py-4 rounded-full flex items-center gap-2 hover:shadow-[0_0_30px_rgba(138,180,248,0.5)] transition-all transform hover:-translate-y-1">
           <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>play_arrow</span>
           WATCH MY WORK
         </button>
@@ -260,7 +260,7 @@ const ShortFormDeck = () => {
   ];
 
   return (
-    <section className="py-section-gap bg-surface-container-lowest overflow-hidden" id="work">
+    <section className="py-section-gap bg-background overflow-hidden" id="work">
       <div className="px-grid-margin max-w-7xl mx-auto">
         <div className="mb-8 md:mb-16 flex flex-col items-start text-left">
           <div className="inline-block border border-primary/30 text-primary font-label-mono text-[10px] tracking-widest px-4 py-1.5 rounded-full mb-6">
@@ -374,7 +374,7 @@ const ProcessSection = () => {
   ];
 
   return (
-    <section className="py-section-gap bg-surface-container-lowest" id="process">
+    <section className="py-section-gap bg-background" id="process">
       <div className="px-grid-margin max-w-7xl mx-auto">
         <div className="mb-16 flex flex-col items-start text-left">
           <div className="border border-primary/30 text-primary font-label-mono text-[10px] tracking-widest px-4 py-1.5 rounded-full mb-6">
@@ -421,8 +421,8 @@ const AboutSection = () => (
         className="relative group"
       >
         <div
-          className="aspect-square rounded-2xl border border-primary/30 overflow-hidden relative shadow-[0_0_40px_rgba(43,245,142,0.15)]"
-          style={{ background: 'radial-gradient(circle at top left, rgba(43,245,142,0.3), transparent 75%), #0a0a0a' }}
+          className="aspect-square rounded-2xl border border-primary/30 overflow-hidden relative shadow-[0_0_40px_rgba(138,180,248,0.15)]"
+          style={{ background: 'radial-gradient(circle at top left, rgba(138,180,248,0.3), transparent 75%), #0a0a0a' }}
         >
           <div className="absolute inset-0 flex items-center justify-center font-display-xl text-[160px] md:text-[220px] text-primary/15 select-none">PV</div>
 
@@ -468,9 +468,9 @@ const AboutSection = () => (
             BOOK A CALL <span className="ml-2 text-sm leading-none">↗</span>
           </a>
         </div>
-      </motion.div>
-    </div>
-  </section>
+      </motion.div >
+    </div >
+  </section >
 );
 
 const CtaSection = () => (
@@ -496,7 +496,7 @@ const CtaSection = () => (
         initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}
         className="flex flex-col sm:flex-row items-center justify-center gap-6"
       >
-        <a href="https://calendly.com/punitvachhani/30min" target="_blank" rel="noopener noreferrer" className="bg-primary-fixed text-on-primary-fixed font-label-mono text-label-mono px-12 py-5 rounded-full flex items-center justify-center gap-2 hover:shadow-[0_0_40px_rgba(0,227,128,0.6)] transition-all transform hover:-translate-y-1">
+        <a href="https://calendly.com/punitvachhani/30min" target="_blank" rel="noopener noreferrer" className="bg-primary-fixed text-on-primary-fixed font-label-mono text-label-mono px-12 py-5 rounded-full flex items-center justify-center gap-2 hover:shadow-[0_0_40px_rgba(138,180,248,0.6)] transition-all transform hover:-translate-y-1">
           LET'S TALK ↗
         </a>
         <button className="border border-outline-variant text-on-surface font-label-mono text-label-mono px-12 py-5 rounded-full hover:bg-surface-variant transition-all transform hover:-translate-y-1">
