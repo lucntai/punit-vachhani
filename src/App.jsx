@@ -461,11 +461,11 @@ const AboutSection = () => (
         </div>
 
         <div className="flex flex-wrap items-center gap-4 pt-8 mt-auto">
-          <a href="#" className="inline-flex items-center justify-center bg-primary-fixed text-on-primary-fixed font-label-mono text-[10px] font-bold uppercase tracking-widest px-6 py-3.5 rounded-full hover:shadow-[0_0_20px_rgba(0,227,128,0.6)] transition-all shadow-[0_0_15px_rgba(0,227,128,0.3)]">
-            INSTAGRAM <span className="ml-2 text-sm leading-none">→</span>
+          <a href="mailto:vachhanipunit@yahoo.in" className="inline-flex items-center justify-center bg-primary-fixed text-on-primary-fixed font-label-mono text-[10px] font-bold uppercase tracking-widest px-6 py-3.5 rounded-full hover:shadow-[0_0_20px_rgba(0,227,128,0.6)] transition-all shadow-[0_0_15px_rgba(0,227,128,0.3)]">
+            EMAIL <span className="ml-2 text-sm leading-none">→</span>
           </a>
-          <a href="#" className="inline-flex items-center justify-center bg-transparent border border-outline-variant text-on-surface font-label-mono text-[10px] font-bold uppercase tracking-widest px-6 py-3.5 rounded-full hover:border-primary/50 transition-colors">
-            WHATSAPP <span className="ml-2 text-sm leading-none">↗</span>
+          <a href="https://calendly.com/punitvachhani/30min" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center bg-transparent border border-outline-variant text-on-surface font-label-mono text-[10px] font-bold uppercase tracking-widest px-6 py-3.5 rounded-full hover:border-primary/50 transition-colors">
+            BOOK A CALL <span className="ml-2 text-sm leading-none">↗</span>
           </a>
         </div>
       </motion.div>
