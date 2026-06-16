@@ -293,123 +293,51 @@ const ShortFormDeck = () => {
 
 const FeaturedVideoCard = ({ p, maxTop }) => {
   const containerRef = useRef(null);
-  const videoRef = useRef(null);
-  const [isActive, setIsActive] = useState(false);
-  const [isInView, setIsInView] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsInView(entry.isIntersecting);
-      },
-      { threshold: 0.6 } // Video plays when 60% in view
-    );
-    if (containerRef.current) observer.observe(containerRef.current);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (videoRef.current) {
-      if (isActive) {
-        // Active mode: pause the preview video since modal is taking over
-        videoRef.current.pause();
-      } else if (isInView) {
-        // Preview mode: force muted, auto play
-        videoRef.current.muted = true;
-        videoRef.current.play().catch(e => console.log('Autoplay blocked:', e));
-      } else {
-        // Out of view or inactive: pause
-        videoRef.current.pause();
-      }
-    }
-  }, [isInView, isActive]);
-
-  const handleCardClick = () => {
-    if (!isActive) setIsActive(true);
-  };
-
-  const handleClose = (e) => {
-    e.stopPropagation();
-    setIsActive(false);
-  };
 
   return (
-    <>
-      {/* Background Card */}
-      <motion.div
-        ref={containerRef}
-        initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }}
-        onClick={handleCardClick}
-        className="group sticky shadow-[0_10px_40px_rgba(0,0,0,0.8)] bg-[#000000] rounded-2xl transition-all duration-500 overflow-hidden border-2 border-primary/20 hover:border-primary/50 cursor-pointer scale-100 max-w-4xl mx-auto w-full"
-        style={{ top: `var(--top-offset, ${p.top}px)`, zIndex: p.id * 10 }}
-      >
-        <style>{`
-          @media (max-width: 768px) {
-            div[style*="zIndex: ${p.id * 10}"] {
-              --top-offset: ${p.topMobile}px;
-            }
+    <motion.div
+      ref={containerRef}
+      initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }}
+      className="group sticky shadow-[0_10px_40px_rgba(0,0,0,0.8)] bg-[#000000] rounded-2xl transition-all duration-500 overflow-hidden border-2 border-primary/20 hover:border-primary/50 max-w-4xl mx-auto w-full"
+      style={{ top: `var(--top-offset, ${p.top}px)`, zIndex: p.id * 10 }}
+    >
+      <style>{`
+        @media (max-width: 768px) {
+          div[style*="zIndex: ${p.id * 10}"] {
+            --top-offset: ${p.topMobile}px;
           }
-        `}</style>
-        <div className="relative bg-surface overflow-hidden transition-all duration-500 aspect-video max-h-[45vh] lg:max-h-[55vh]">
-          <video
-            ref={videoRef}
-            src="/video-1.mp4"
-            loop
-            playsInline
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${!isActive && isInView ? 'opacity-80 group-hover:opacity-100' : 'opacity-100'}`}
-          />
-          {!isActive && !isInView && (
-            <div className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-transparent transition-colors duration-500">
-              <div className="w-[72px] h-[72px] rounded-full bg-primary flex items-center justify-center text-background shadow-[0_0_30px_rgba(43,245,142,0.4)] group-hover:shadow-[0_0_60px_rgba(43,245,142,0.6)] group-hover:scale-110 transition-all duration-300">
-                <span className="material-symbols-outlined text-4xl ml-1" style={{ fontVariationSettings: "'FILL' 1" }}>play_arrow</span>
-              </div>
-            </div>
-          )}
+        }
+      `}</style>
+      <div className="relative bg-surface overflow-hidden transition-all duration-500 aspect-video">
+        <iframe
+          src={p.url}
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+          className="absolute inset-0 w-full h-full"
+        ></iframe>
+      </div>
+      <div className="p-4 md:px-6 md:py-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-[#000000] transition-all duration-500 relative z-10">
+        <div>
+          <h3 className="font-display-lg text-xl md:text-2xl text-on-surface mb-1.5 leading-none uppercase transition-colors">{p.title}</h3>
+          <p className="font-label-mono text-[9px] text-on-surface-variant tracking-[0.15em] uppercase">{p.meta}</p>
         </div>
-        <div className="p-4 md:px-6 md:py-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-[#000000] transition-all duration-500">
-          <div>
-            <h3 className="font-display-lg text-xl md:text-2xl text-on-surface mb-1.5 leading-none uppercase transition-colors">{p.title}</h3>
-            <p className="font-label-mono text-[9px] text-on-surface-variant tracking-[0.15em] uppercase">{p.meta}</p>
-          </div>
-          <div className="border border-primary/40 text-primary font-label-mono text-[9px] tracking-widest px-4 py-1.5 rounded-full whitespace-nowrap group-hover:border-primary transition-colors">
-            {p.tag}
-          </div>
+        <div className="border border-primary/40 text-primary font-label-mono text-[9px] tracking-widest px-4 py-1.5 rounded-full whitespace-nowrap group-hover:border-primary transition-colors">
+          {p.tag}
         </div>
-      </motion.div>
-
-      {/* Fullscreen Modal Form */}
-      {isActive && (
-        <div
-          className="fixed inset-0 z-[200] flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 md:p-8 allow-cursor"
-          onClick={handleClose}
-        >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.3 }}
-            className="relative w-full max-w-6xl aspect-video bg-black rounded-2xl overflow-hidden shadow-[0_0_80px_rgba(0,0,0,1)] border border-white/10"
-            onClick={e => e.stopPropagation()}
-          >
-            <video
-              src="/video-1.mp4"
-              autoPlay
-              controls
-              className="w-full h-full object-contain outline-none"
-            />
-          </motion.div>
-        </div>
-      )}
-    </>
+      </div>
+    </motion.div>
   );
 };
 
 const FeaturedProjects = () => {
   const projects = [
-    { id: 1, title: "COCA-COLA EDIT", meta: "BRAND COMMERCIAL • PREMIERE PRO • 2024", tag: "COMMERCIAL", url: "vimeo.com/umar_faruq/coca_cola", top: 100, topMobile: 80 },
-    { id: 2, title: "SEBASTIAN: SPEED NARRATIVE", meta: "FAN DOCUMENTARY • AFTER EFFECTS • 2023", tag: "DOCUMENTARY", url: "yt.com/watch?v=sebastian_f1", top: 112, topMobile: 88 },
-    { id: 3, title: "UBISOFT: UNSEEN WORLD", meta: "GAME TRAILER • PREMIERE PRO • 2024", tag: "GAME TRAILER", url: "vimeo.com/umar_faruq/ubisoft_promo", top: 124, topMobile: 96 },
-    { id: 4, title: "PV. PERSONAL BRAND FILM", meta: "IDENTITY PIECE • DAVINCI RESOLVE • 2024", tag: "BRAND FILM", url: "portfolio.uf/personal_brand_film", top: 136, topMobile: 104 }
+    { id: 1, title: "COCA-COLA EDIT", meta: "BRAND COMMERCIAL • PREMIERE PRO • 2024", tag: "COMMERCIAL", url: "https://www.youtube.com/embed/AU2debSMciU?si=Q3pBpbLztgpP1TxD", top: 100, topMobile: 80 },
+    { id: 2, title: "SEBASTIAN: SPEED NARRATIVE", meta: "FAN DOCUMENTARY • AFTER EFFECTS • 2023", tag: "DOCUMENTARY", url: "https://www.youtube.com/embed/YqBBDChtaKU?si=3j-FaDY19nbMc00n", top: 112, topMobile: 88 },
+    { id: 3, title: "UBISOFT: UNSEEN WORLD", meta: "GAME TRAILER • PREMIERE PRO • 2024", tag: "GAME TRAILER", url: "https://www.youtube.com/embed/swyl_ZoF0uQ?start=92", top: 124, topMobile: 96 },
+    { id: 4, title: "PV. PERSONAL BRAND FILM", meta: "IDENTITY PIECE • DAVINCI RESOLVE • 2024", tag: "BRAND FILM", url: "https://www.youtube.com/embed/PYX47o71G4o", top: 136, topMobile: 104 }
   ];
 
   const maxTop = Math.max(...projects.map(p => p.top));
@@ -583,7 +511,7 @@ const Footer = () => (
   <footer className="w-full py-6 px-grid-margin border-t border-outline-variant bg-surface-container-low grid grid-cols-1 md:grid-cols-3 items-center gap-6 font-body-md text-body-md">
     <div className="flex flex-col items-center md:items-start gap-1">
       <img src={signLogo} alt="PV Logo" className="h-6 md:h-10 w-auto mb-2" />
-      <p className="font-label-mono text-[10px] text-on-surface-variant tracking-widest uppercase">CUTS THAT MOVE PEOPLE — AHMEDABAD, GJ</p>
+      <p className="font-label-mono text-[10px] text-on-surface-variant tracking-widest uppercase">CUTS THAT MOVE PEOPLE</p>
     </div>
     <div className="flex justify-center gap-8">
       <a className="text-on-surface-variant hover:text-primary transition-colors font-label-mono text-label-mono" href="#services">SERVICES</a>
