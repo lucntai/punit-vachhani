@@ -281,7 +281,7 @@ const ShortFormDeck = () => {
         </div>
 
         {/* Mobile: Horizontal Scroll Snap | Desktop: Hover Deck */}
-        <div className="group/deck relative md:h-[600px] flex overflow-x-auto snap-x snap-mandatory md:overflow-visible gap-4 md:gap-0 pb-8 md:pb-0 hide-scrollbar md:items-center md:justify-center w-[calc(100vw-2rem)] md:w-full max-w-3xl mx-auto cursor-pointer mt-8 md:mt-24 -ml-4 pl-4 md:ml-auto md:pl-0">
+        <div className="group/deck relative md:h-[520px] flex overflow-x-auto snap-x snap-mandatory md:overflow-visible gap-4 md:gap-0 pb-8 md:pb-0 hide-scrollbar md:items-center md:justify-center w-[calc(100vw-2rem)] md:w-full max-w-3xl mx-auto cursor-pointer mt-8 md:mt-40 -ml-4 pl-4 md:ml-auto md:pl-0">
           {cards.map((c, idx) => (
             <ShortFormCard key={idx} card={c} />
           ))}
@@ -355,7 +355,7 @@ const FeaturedProjects = () => {
           FEATURED <span className="font-headline-accent italic text-primary-fixed">EPISODES</span>
         </motion.h2>
       </div>
-      <div className="flex flex-col gap-8 relative pb-24">
+      <div className="flex flex-col gap-8 relative">
         {projects.map((p) => (
           <FeaturedVideoCard key={p.id} p={p} maxTop={maxTop} />
         ))}
@@ -445,9 +445,9 @@ const AboutSection = () => (
       </motion.div>
       <motion.div
         initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
-        className="flex flex-col justify-between h-full py-4 lg:py-0"
+        className="flex flex-col h-full py-4 lg:py-0"
       >
-        <div className="flex flex-col items-start text-left mb-8">
+        <div className="flex flex-col items-start text-left mb-4 md:mb-8">
           <div className="inline-block border border-primary/30 text-primary font-label-mono text-[10px] tracking-widest px-4 py-1.5 rounded-full mb-6">
             ABOUT
           </div>
@@ -456,11 +456,11 @@ const AboutSection = () => (
           </h2>
         </div>
 
-        <div className="text-sm md:text-base text-on-surface-variant leading-relaxed">
+        <div className="text-base lg:text-lg text-on-surface-variant leading-relaxed md:leading-loose">
           <p>I started my podcasting journey as a creator, learning firsthand what it takes to build and grow a podcast. Over the years, I’ve worked with creators, founders, and brands on their podcasting journeys, giving me a broader perspective on storytelling, production, audience engagement, and content strategy. This combination of creator and operator experience allows me to help podcasts create meaningful conversations that resonate with their audience.</p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-4 pt-2">
+        <div className="flex flex-wrap items-center gap-4 pt-8 mt-auto">
           <a href="#" className="inline-flex items-center justify-center bg-primary-fixed text-on-primary-fixed font-label-mono text-[10px] font-bold uppercase tracking-widest px-6 py-3.5 rounded-full hover:shadow-[0_0_20px_rgba(0,227,128,0.6)] transition-all shadow-[0_0_15px_rgba(0,227,128,0.3)]">
             INSTAGRAM <span className="ml-2 text-sm leading-none">→</span>
           </a>

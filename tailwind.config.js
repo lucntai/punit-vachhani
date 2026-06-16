@@ -63,7 +63,7 @@ export default {
             "full": "9999px"
         },
         spacing: {
-            "section-gap": "8rem",
+            "section-gap": "5rem",
             "gutter": "1.5rem",
             "grid-margin": "2rem",
             "component-padding": "1rem"
