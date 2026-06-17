@@ -9,7 +9,7 @@ const Navbar = () => {
       <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] md:w-max rounded-full px-6 md:pr-3 py-2 border-[0.5px] border-primary/30 bg-surface/10 backdrop-blur-xl z-[150] flex justify-between items-center md:gap-12 lg:gap-20 shadow-[0_0_20px_rgba(138,180,248,0.15)] transition-all duration-300">
         <div className="z-10 flex items-center justify-center">
           <a href="/" className="flex items-center justify-center" onClick={() => setIsOpen(false)}>
-            <img src={signLogo} alt="PV Logo" className="h-8 sm:h-9 w-auto drop-shadow-md hover:scale-105 transition-transform origin-left" />
+            <img src={signLogo} alt="PV Logo" className="h-8 sm:h-10 w-auto drop-shadow-md hover:scale-105 transition-transform origin-left -ml-2" />
           </a>
         </div>
         <div className="hidden md:flex gap-8 items-center">
@@ -87,22 +87,24 @@ const HeroSection = ({ mousePosition }) => (
     >
       <div className="inline-flex items-center gap-3 border-[0.5px] border-primary/40 px-5 py-2 rounded-full mb-8 bg-primary/5 backdrop-blur-sm">
         <span className="w-2 h-2 bg-primary rounded-full animate-pulse-glow shadow-[0_0_8px_rgba(138,180,248,0.8)]"></span>
-        <span className="font-label-mono text-[11px] text-primary uppercase tracking-[0.3em]">FREELANCE VIDEO EDITOR</span>
+        <span className="font-label-mono text-[11px] text-primary uppercase tracking-[0.3em]">BUILD YOUR PODCAST ON SCALE</span>
       </div>
       <h1 className="font-display-xl text-[50px] sm:text-[60px] md:text-[72px] lg:text-[90px] leading-[1.1] mb-6 text-on-surface tracking-tighter">
         YOU <span className="font-headline-accent italic text-primary-fixed">RECORD</span>.<br />I HANDLE THE REST.
       </h1>
-      <p className="font-label-mono text-label-mono text-on-surface-variant mb-4 tracking-[0.2em] uppercase">
+      {/* <p className="font-label-mono text-label-mono text-on-surface-variant mb-4 tracking-[0.2em] uppercase">
         VIDEO EDITOR &amp; MOTION DESIGNER
-      </p>
+      </p> */}
       <p className="font-body-lg text-body-lg max-w-2xl mx-auto mb-12 text-on-surface/80">
         I help creators, founders, and brands turn conversations into content people actually share.
       </p>
       <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-        <button className="bg-primary-fixed text-on-primary-fixed font-label-mono text-label-mono px-10 py-4 rounded-full flex items-center gap-2 hover:shadow-[0_0_30px_rgba(138,180,248,0.5)] transition-all transform hover:-translate-y-1">
-          <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>play_arrow</span>
-          WATCH MY WORK
-        </button>
+        <a href='#work'>
+          <button className="bg-primary-fixed text-on-primary-fixed font-label-mono text-label-mono px-10 py-4 rounded-full flex items-center gap-2 hover:shadow-[0_0_30px_rgba(138,180,248,0.5)] transition-all transform hover:-translate-y-1">
+            <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>play_arrow</span>
+            WATCH MY WORK
+          </button>
+        </a>
         <a href="https://calendly.com/punitvachhani/30min" target="_blank" rel="noopener noreferrer" className="border border-primary/40 text-primary font-label-mono text-label-mono px-10 py-4 rounded-full flex items-center justify-center gap-2 hover:bg-primary/10 transition-all transform hover:-translate-y-1">
           LET'S TALK ↗
         </a>
@@ -319,7 +321,7 @@ const FeaturedVideoCard = ({ p, maxTop }) => {
           className="absolute inset-0 w-full h-full"
         ></iframe>
       </div>
-      <div className="p-4 md:px-6 md:py-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-[#000000] transition-all duration-500 relative z-10">
+      {/* <div className="p-4 md:px-6 md:py-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-[#000000] transition-all duration-500 relative z-10">
         <div>
           <h3 className="font-display-lg text-xl md:text-2xl text-on-surface mb-1.5 leading-none uppercase transition-colors">{p.title}</h3>
           <p className="font-label-mono text-[9px] text-on-surface-variant tracking-[0.15em] uppercase">{p.meta}</p>
@@ -327,7 +329,7 @@ const FeaturedVideoCard = ({ p, maxTop }) => {
         <div className="border border-primary/40 text-primary font-label-mono text-[9px] tracking-widest px-4 py-1.5 rounded-full whitespace-nowrap group-hover:border-primary transition-colors">
           {p.tag}
         </div>
-      </div>
+      </div> */}
     </motion.div>
   );
 };
@@ -486,12 +488,12 @@ const CtaSection = () => (
         LET'S CREATE <br />
         <span className="font-headline-accent italic text-primary-fixed">SOMETHING<br />EPIC</span>
       </motion.h2>
-      <motion.p
+      {/* <motion.p
         initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}
         className="text-on-surface-variant text-base md:text-lg max-w-2xl mx-auto mb-12 leading-relaxed"
       >
         Whether it's a brand film, a viral reel, or a full content series — let's build something your audience won't scroll past.
-      </motion.p>
+      </motion.p> */}
       <motion.div
         initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}
         className="flex flex-col sm:flex-row items-center justify-center gap-6"
@@ -508,20 +510,19 @@ const CtaSection = () => (
 );
 
 const Footer = () => (
-  <footer className="w-full py-6 px-grid-margin border-t border-outline-variant bg-surface-container-low grid grid-cols-1 md:grid-cols-3 items-center gap-6 font-body-md text-body-md">
+  <footer className="w-full py-4 md:py-5 px-grid-margin border-t border-outline-variant bg-surface-container-low grid grid-cols-1 md:grid-cols-3 items-center gap-5 font-body-md text-body-md">
     <div className="flex flex-col items-center md:items-start gap-1">
-      <img src={signLogo} alt="PV Logo" className="h-6 md:h-10 w-auto mb-2" />
+      <img src={signLogo} alt="PV Logo" className="h-5 md:h-7 w-auto mb-1" />
       <p className="font-label-mono text-[10px] text-on-surface-variant tracking-widest uppercase">CUTS THAT MOVE PEOPLE</p>
     </div>
-    <div className="flex justify-center gap-8">
+    <div className="flex justify-center gap-6">
       <a className="text-on-surface-variant hover:text-primary transition-colors font-label-mono text-label-mono" href="#services">SERVICES</a>
       <a className="text-on-surface-variant hover:text-primary transition-colors font-label-mono text-label-mono" href="#work">WORK</a>
       <a className="text-on-surface-variant hover:text-primary transition-colors font-label-mono text-label-mono" href="#process">PROCESS</a>
       <a className="text-on-surface-variant hover:text-primary transition-colors font-label-mono text-label-mono" href="#about">ABOUT</a>
     </div>
     <div className="text-on-surface-variant font-label-mono text-[10px] text-center md:text-right">
-      © 2026 PUNIT VACHHANI <br />
-      FREELANCE VIDEO EDITOR
+      © 2026. All rights reserved
     </div>
   </footer>
 );
