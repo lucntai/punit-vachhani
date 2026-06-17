@@ -235,9 +235,9 @@ const ShortFormCard = ({ card }) => {
         loop
         muted={isMuted}
         playsInline
-        className="absolute inset-0 w-full h-full object-cover opacity-90 transition-opacity"
+        className="absolute inset-0 w-full h-full object-cover opacity-90 transition-opacity rounded-[14px]"
       />
-      <div className="absolute inset-0 bg-black/10 group-hover/deck:bg-transparent transition-colors pointer-events-none"></div>
+      <div className="absolute inset-0 bg-black/10 group-hover/deck:bg-transparent transition-colors pointer-events-none rounded-[14px]"></div>
       {/* <div className="absolute bottom-0 inset-x-0 p-6 bg-gradient-to-t from-surface/90 via-surface/60 to-transparent pointer-events-none z-10 flex flex-col justify-end">
         <span className="font-label-mono text-[10px] text-primary mb-2 block tracking-widest uppercase">{card.tag}</span>
         <h4 className="font-display-lg text-body-md md:text-xl text-on-surface leading-tight">{card.title}</h4>
