@@ -87,7 +87,7 @@ const HeroSection = ({ mousePosition }) => (
     >
       <div className="inline-flex items-center gap-3 border-[0.5px] border-primary/40 px-5 py-2 rounded-full mb-8 bg-primary/5 backdrop-blur-sm">
         <span className="w-2 h-2 bg-primary rounded-full animate-pulse-glow shadow-[0_0_8px_rgba(138,180,248,0.8)]"></span>
-        <span className="font-label-mono text-[11px] text-primary uppercase tracking-[0.3em]">BUILD YOUR PODCAST ON SCALE</span>
+        <span className="font-label-mono font-black text-[11px] text-primary uppercase tracking-[0.3em]">BUILD YOUR PODCAST ON SCALE</span>
       </div>
       <h1 className="font-display-xl text-[50px] sm:text-[60px] md:text-[72px] lg:text-[90px] leading-[1.1] mb-6 text-on-surface tracking-tighter">
         YOU <span className="font-headline-accent italic text-primary-fixed">RECORD</span>.<br />I HANDLE THE REST.
@@ -238,10 +238,10 @@ const ShortFormCard = ({ card }) => {
         className="absolute inset-0 w-full h-full object-cover opacity-90 transition-opacity"
       />
       <div className="absolute inset-0 bg-black/10 group-hover/deck:bg-transparent transition-colors pointer-events-none"></div>
-      <div className="absolute bottom-0 inset-x-0 p-6 bg-gradient-to-t from-surface/90 via-surface/60 to-transparent pointer-events-none z-10 flex flex-col justify-end">
+      {/* <div className="absolute bottom-0 inset-x-0 p-6 bg-gradient-to-t from-surface/90 via-surface/60 to-transparent pointer-events-none z-10 flex flex-col justify-end">
         <span className="font-label-mono text-[10px] text-primary mb-2 block tracking-widest uppercase">{card.tag}</span>
         <h4 className="font-display-lg text-body-md md:text-xl text-on-surface leading-tight">{card.title}</h4>
-      </div>
+      </div> */}
       <button
         onClick={toggleMute}
         className="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-background/60 backdrop-blur-md border border-outline-variant flex items-center justify-center text-white hover:bg-primary hover:text-background transition-colors z-20 shadow-lg"
@@ -254,17 +254,16 @@ const ShortFormCard = ({ card }) => {
 
 const ShortFormDeck = () => {
   const cards = [
-    { tag: "JOSEPH", title: "EDITORIAL CUT", video: "/video-1.mp4", z: 10, initialClasses: "md:rotate-[-4deg] md:translate-x-[-12px] md:translate-y-[5px] group-hover/deck:md:rotate-[-16deg] group-hover/deck:md:-translate-x-[110%] group-hover/deck:md:-translate-y-[10%]" },
-    { tag: "COMEBACK", title: "STORYTELLING REEL", video: "/video-1.mp4", z: 20, initialClasses: "md:rotate-[-2deg] md:translate-x-[-6px] md:translate-y-[2px] group-hover/deck:md:rotate-[-8deg] group-hover/deck:md:-translate-x-[55%] group-hover/deck:md:-translate-y-[20%]" },
-    { tag: "HARDWORK", title: "EDITORIAL CUT", video: "/video-1.mp4", z: 30, initialClasses: "md:rotate-[0deg] md:translate-x-[0px] md:translate-y-[0px] group-hover/deck:md:rotate-[0deg] group-hover/deck:md:translate-x-[0%] group-hover/deck:md:-translate-y-[25%]" },
-    { tag: "JOURNEY", title: "TRAVEL VLOG", video: "/video-1.mp4", z: 40, initialClasses: "md:rotate-[2deg] md:translate-x-[6px] md:translate-y-[2px] group-hover/deck:md:rotate-[8deg] group-hover/deck:md:translate-x-[55%] group-hover/deck:md:-translate-y-[20%]" },
-    { tag: "TECH SPEC", title: "PRODUCT AD", video: "/video-1.mp4", z: 50, initialClasses: "md:rotate-[4deg] md:translate-x-[12px] md:translate-y-[5px] group-hover/deck:md:rotate-[16deg] group-hover/deck:md:translate-x-[110%] group-hover/deck:md:-translate-y-[10%]" }
+    { tag: "COMEBACK", title: "STORYTELLING REEL", video: "/short-form-video-1.mp4", z: 10, initialClasses: "md:rotate-[-4deg] md:translate-x-[-15px] md:translate-y-[5px] group-hover/deck:md:rotate-[-4deg] group-hover/deck:md:-translate-x-[115%] group-hover/deck:md:translate-y-[4%]" },
+    { tag: "HARDWORK", title: "EDITORIAL CUT", video: "/short-form-video-2.mp4", z: 20, initialClasses: "md:rotate-[2deg] md:translate-x-[-5px] md:translate-y-[-2px] group-hover/deck:md:rotate-[2deg] group-hover/deck:md:-translate-x-[38%] group-hover/deck:md:-translate-y-[2%]" },
+    { tag: "JOURNEY", title: "TRAVEL VLOG", video: "/short-form-video-3.mp4", z: 30, initialClasses: "md:rotate-[-2deg] md:translate-x-[5px] md:translate-y-[4px] group-hover/deck:md:rotate-[-1deg] group-hover/deck:md:translate-x-[38%] group-hover/deck:md:translate-y-[3%]" },
+    { tag: "TECH SPEC", title: "PRODUCT AD", video: "/short-form-video-4.mp4", z: 40, initialClasses: "md:rotate-[3deg] md:translate-x-[15px] md:translate-y-[-3px] group-hover/deck:md:rotate-[3deg] group-hover/deck:md:translate-x-[115%] group-hover/deck:md:-translate-y-[1%]" }
   ];
 
   return (
     <section className="py-section-gap bg-background overflow-hidden" id="work">
       <div className="px-grid-margin max-w-7xl mx-auto">
-        <div className="mb-8 md:mb-16 flex flex-col items-start text-left">
+        <div className="mb-6 md:mb-8 flex flex-col items-start text-left">
           <div className="inline-block border border-primary/30 text-primary font-label-mono text-[10px] tracking-widest px-4 py-1.5 rounded-full mb-6">
             WORK
           </div>
@@ -283,7 +282,7 @@ const ShortFormDeck = () => {
         </div>
 
         {/* Mobile: Horizontal Scroll Snap | Desktop: Hover Deck */}
-        <div className="group/deck relative md:h-[520px] flex overflow-x-auto snap-x snap-mandatory md:overflow-visible gap-4 md:gap-0 pb-8 md:pb-0 hide-scrollbar md:items-center md:justify-center w-[calc(100vw-2rem)] md:w-full max-w-3xl mx-auto cursor-pointer mt-8 md:mt-40 -ml-4 pl-4 md:ml-auto md:pl-0">
+        <div className="group/deck relative md:h-[520px] flex overflow-x-auto snap-x snap-mandatory md:overflow-visible gap-4 md:gap-0 pb-8 md:pb-0 hide-scrollbar md:items-center md:justify-center w-[calc(100vw-2rem)] md:w-full max-w-3xl mx-auto cursor-pointer mt-8 md:mt-12 -ml-4 pl-4 md:ml-auto md:pl-0">
           {cards.map((c, idx) => (
             <ShortFormCard key={idx} card={c} />
           ))}
