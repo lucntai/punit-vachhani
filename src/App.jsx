@@ -225,7 +225,7 @@ const ShortFormCard = ({ card }) => {
     <div
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`card-deck-item relative md:absolute flex-shrink-0 w-64 md:w-72 aspect-[9/16] bg-surface-container border-2 border-primary/30 rounded-2xl overflow-hidden shadow-2xl z-${card.z} hover:z-[100] md:hover:scale-105 md:hover:shadow-[0_0_50px_rgba(0,0,0,0.9)] snap-center md:snap-align-none ${card.initialClasses}`}
+      className={`card-deck-item relative md:absolute flex-shrink-0 w-64 md:w-72 aspect-[9/16] bg-surface-container border-2 border-primary/20 hover:border-primary/50 rounded-2xl overflow-hidden shadow-2xl z-${card.z} hover:z-[100] md:hover:scale-105 md:hover:shadow-[0_0_50px_rgba(0,0,0,0.9)] snap-center md:snap-align-none ${card.initialClasses}`}
     >
       <video
         ref={videoRef}
