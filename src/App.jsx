@@ -520,7 +520,7 @@ const Footer = () => (
       <a className="text-on-surface-variant hover:text-primary transition-colors font-label-mono text-label-mono" href="#process">PROCESS</a>
       <a className="text-on-surface-variant hover:text-primary transition-colors font-label-mono text-label-mono" href="#about">ABOUT</a>
     </div>
-    <div className="text-on-surface-variant font-label-mono text-[10px] text-center md:text-right">
+    <div className="text-on-surface-variant font-label-mono text-[12px] text-center md:text-right">
       © 2026. All rights reserved
     </div>
   </footer>
